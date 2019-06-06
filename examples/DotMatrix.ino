@@ -1,6 +1,6 @@
 /*
 
-   kod för att styra en DLR3416-display från Siemens
+   code for OSRAM DLx2416 or DLx3416
 
 
    Pinout
@@ -24,15 +24,19 @@
 
 #include <DotMatrix.h>
 
-byte  a[2] = {10, 11};     // Adress
+const uint8_t DISPLAYS = 1; //number of 5x7 dots displays
+
+byte  a[2] = {10, 11};     // Adress A0 and A1 of the DLx2416
 byte  d[7] = {2, 3, 4, 5, 6, 7, 8}; // Data
 byte  bl = 12;        // Blanking pin
 byte  wr = 9;        // Write pin
 byte  i;
 
+// Initialize the display using DotMatrix library
+DotMatrix dm(DISPLAYS, clr, wr, bl, ad0, ad1, d0, d1, d2, d3, d4, d5, d6);
+
 void setup()
 {
-  Serial.begin(9600);
   pinMode(wr, OUTPUT);
   digitalWrite(wr, 1);
   pinMode(bl, OUTPUT);
@@ -43,65 +47,19 @@ void setup()
   for (i = 0; i < 7; i++) {
     pinMode(d[i], OUTPUT);
   }
+  //Not blink the display
+  dm.noblink();
 }
 
 void loop()
 {
-  writeWord("Test");
+  //Delete the display memory 
+  dm.clear();
+ //write in 1 Displays, beginning at 0 position or MSB the string "Test"
+  dm.writeWord(DISPLAYS, 0, "Test");
   delay(500);
-  /*wrt(2, 0x65);
-    delay(500);
-    wrt(1, 0x73);
-    delay(500);
-    wrt(0, 0x74);
-    delay(500); */
 
-  for (i = 0; i < 5; i++) {
-    digitalWrite(bl, 0);
-    delay(500);
-    digitalWrite(bl, 1);
-    delay(500);
-  }
+  //Blink the display 5 times with 200ms delay
+  dm.blink(5, 200);
 
-}
-
-void writeWord(String character)
-{
-  digitalWrite(a[0], 1);
-  digitalWrite(a[1], 1);
-  Serial.println(character[0]);
-  for (int i = 0; i < 7; i++) {
-    digitalWrite(d[i], bitRead(character[0], i));
-  }
-  wrt();
-  
-  digitalWrite(a[0], 0);
-  digitalWrite(a[1], 1);
-
-  for (int i = 0; i < 7; i++) {
-    digitalWrite(d[i], bitRead(character[1], i));
-  }
-  wrt();
-
-  digitalWrite(a[0], 1);
-  digitalWrite(a[1], 0);
-
-  for (int i = 0; i < 7; i++) {
-    digitalWrite(d[i], bitRead(character[2], i));
-  }
-  wrt();
-
-  digitalWrite(a[0], 0);
-  digitalWrite(a[1], 0);
-
-  for (int i = 0; i < 7; i++) {
-    digitalWrite(d[i], bitRead(character[3], i));
-  }
-  wrt();
-}
-
-void wrt() {
-  digitalWrite(wr, 0);
-  delay(5);
-  digitalWrite(wr, 1);
 }
