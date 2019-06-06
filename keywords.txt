@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map For DotMatrix 5x7 Dots
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DotMatrix	KEYWORD1	DotMatrix
+DotMatrix_I2C	KEYWORD1	DotMatrix_I2C
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init	KEYWORD2
+clear	KEYWORD2
+blink	KEYWORD2
+noblink	KEYWORD2
+write	KEYWORD2
+writeWord	KEYWORD2
+writeChar	KEYWORD2
+shiftRight	KEYWORD2
+shiftLeft	KEYWORD2
+addBlanks	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
