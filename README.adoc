@@ -1,9 +1,10 @@
 = DotMatrix DLR2416 Library for Arduino =
 
-With the Arduino Ethernet Shield, this library allows an Arduino board to connect to the internet.
+A library to control the DLR2416 or DLR3416, 4 red displays with 5x7 dot matrix, alphanumeric Intelligent Display with memory, decoder and driver.
 
-For more information about this library please visit us at
-http://www.arduino.cc/en/Reference/Ethernet
+The integrated circuit DLR2416 (red), DLG2416 (green) contains memory, ASCII ROM decoder, multiplexing circuitry and drivers. The data entry is asynchronous. A display system can be built using any number of DLx2416 since each digit can be addressed indepentdently and will continue to display the character last stored.
+
+This libray contains a simple example how using the DLR2416 with an Arduino UNO.
 
 == License ==
 
