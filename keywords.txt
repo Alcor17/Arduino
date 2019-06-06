@@ -7,7 +7,6 @@
 #######################################
 
 DotMatrix	KEYWORD1	DotMatrix
-DotMatrix_I2C	KEYWORD1	DotMatrix_I2C
 
 #######################################
 # Methods and Functions (KEYWORD2)
